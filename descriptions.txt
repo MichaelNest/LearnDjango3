@@ -1,0 +1,4 @@
+1) python manage.py sqlmigrate bboard 0001 --- команда покажет миграцию 0001 на языке SQL
+2) Bboard.objects.order_by('-title') --- сортировка по заголовку
+3) bb.delete() --- удалить обьект из БД
+4)
