@@ -5,15 +5,26 @@
     <title>Title</title>
 </head>
 <body>
-<h1>Список обьявлений:</h1>
+    <h1>Обьявления</h1>
 <hr>
 <br>
-{% for b in object_list %}
-    <h1>{{ b.title }}</h1>
-    <h3>{{ b.content }}</h3>
-    <h2>{{ b.price }}</h2>
-    <p>{{ b.published|date:"d.m.Y | H:i:s" }}</p>
-    <hr><br><br><br>
-{% endfor %}
+
+    <div>
+        <a href="{% url 'index' %}">Главная</a>
+        {% for rubric in rubrics %}
+        <a href="{% url 'by_rubric' rubric.pk %}">{{ rubric.name }}</a>
+        {% endfor %}
+    </div>
+    <div>
+        {% for b in object_list %}
+            <h1>{{ b.title }}</h1>
+            <h3>{{ b.content }}</h3>
+            <h2>{{ b.price }}</h2>
+            <p><a href="{% url 'by_rubric' rubric_id=b.rubric.id %}">{{ b.rubric }}</a></p>
+            <p>{{ b.published|date:"d.m.Y | H:i:s" }}</p>
+            <hr><br><br><br>
+        {% endfor %}
+    </div>
+
 </body>
 </html>
